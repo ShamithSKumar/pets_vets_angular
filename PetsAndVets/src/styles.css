@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+.nav-pills .nav-link {
+    background: 0 0;
+    border: 0;
+    border-radius: 0.25rem;
+    background-color: aliceblue;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+    border: black;
+    background-color: #a0aab3;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem!important;
+    border-color: gainsboro;
+    border: outset;
+    padding: 0.5%;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 140px;
+}
