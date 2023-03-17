@@ -68,6 +68,45 @@ export class AdminDashboardComponent implements OnInit {
       ]
     }
   };
+  settings_userpets = {
+    columns: {
+      index: {
+        title: 'Sl.No',
+        filter: false,
+        valuePrepareFunction: (value: any, row: any, cell: any) => {
+          return cell.row.index + 1;
+        }
+      },
+      name: {
+        title: 'Pet Name',
+        filter: true
+      },
+      petType: {
+        title: 'Pet Type',
+        filter: true
+      },
+      amount: {
+        title: 'Amount',
+        filter: true
+      },
+    },
+    attr: {
+      class: 'table table-bordered'
+    },
+    pager:
+    {
+      perPage: 50
+    },
+    actions: {
+      position: 'right',
+      add: false,
+      delete: false,
+      edit: false,
+      custom: [
+        
+      ]
+    }
+  };
   updateForm = new FormGroup({
     userName: new FormControl(''),
     password: new FormControl(''),
@@ -75,15 +114,16 @@ export class AdminDashboardComponent implements OnInit {
     phone: new FormControl(''),
     id: new FormControl('')
   })
+  usersPetsList: any = [];
   constructor(
     private services: Service
   ) { }
 
   ngOnInit(): void {
-    this.getUserPetList();
+    this.getUsersList();
 
   }
-  getUserPetList(){
+  getUsersList(){
     this.usersList = [];
     this.services.getUsersList().subscribe((res: any) => {
       if (res.data.length > 0)
@@ -100,6 +140,14 @@ export class AdminDashboardComponent implements OnInit {
         id: event.data.id,
       })
       document.getElementById('openModalButton')!.click();
+    }
+    if (event.action === 'view') {
+        this.usersPetsList = [];
+        this.services.getPetsListByUser(event.data.userName).subscribe((res: any) => {
+          if (res.data.length > 0)
+            this.usersPetsList = res.data;
+        })
+      document.getElementById('openModalButton1')!.click();
     }
   }
   routeToAdd(){

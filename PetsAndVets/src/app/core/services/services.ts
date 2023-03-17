@@ -7,6 +7,7 @@ import { HttpService } from "../http/http.service";
   })
 export class Service {
     
+    
     constructor(private http: HttpService) { }
 
     login(data): Observable<any> {
@@ -15,11 +16,13 @@ export class Service {
     getPetsList(): Observable<any> {
         return this.http.get('/userpet/list')
     }
+    getPetsListByUser(userName:any): Observable<any> {
+        return this.http.get('/userpet/list/'+userName);
+      }
     register(data): Observable<any> {
         return this.http.post('/user/create', data);
     }
     deletePets(id:any) {
-        console.log('id',id)
         return this.http.delete('/userpet/delete/'+id);
     }
     updatePets(data: any) {

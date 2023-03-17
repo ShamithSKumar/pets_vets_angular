@@ -64,3 +64,26 @@
       </div>
     </div>
   </div>
+  <button id="openModalButton1" [hidden]="true" data-bs-toggle="modal" data-bs-target="#viewpets">Open
+    Modal</button>
+  <div class="modal fade" id="viewpets" tabindex="-1" aria-labelledby="viewpets" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content bluemodal">
+        <div class="modal-header" style="background-color: #2b67eb;">
+          <h5 class="modal-title" id="viewStaff" style="color: white;">View User Pets</h5>
+          <button type="button" id="viewClose" (click)="closeModal()" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid parentdetails">
+            <div class="table table-bordered" id="area1">
+              <ng2-smart-table [settings]="settings_userpets" [source]="usersPetsList" (custom)="onCustomAction($event)">
+              </ng2-smart-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
