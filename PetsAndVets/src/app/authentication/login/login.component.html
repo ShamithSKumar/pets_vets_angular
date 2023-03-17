@@ -3,12 +3,13 @@
         <div class="d-grid gap-2 col-3 mx-auto mb-2 mt-5 login">
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="tab-login" data-bs-toggle="tab" data-mdb-toggle="pill" href="#pills-login" role="tab"
-                        aria-controls="pills-login" aria-selected="true">Login</a>
+                    <a class="nav-link active" id="tab-login" data-bs-toggle="tab" data-mdb-toggle="pill"
+                        href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="tab-register" data-bs-toggle="tab" data-mdb-toggle="pill" href="#pills-register" role="tab"
-                        aria-controls="pills-register" aria-selected="false">Register</a>
+                    <a class="nav-link" id="tab-register" data-bs-toggle="tab" data-mdb-toggle="pill"
+                        href="#pills-register" role="tab" aria-controls="pills-register"
+                        aria-selected="false">Register</a>
                 </li>
             </ul>
             <!-- Pills navs -->
@@ -17,25 +18,26 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                     <form [formGroup]="loginForm">
-                        
 
-                        <!-- Email input -->
+
+                        <!-- userName input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="loginName" class="form-control" formControlName="username" 
-                             placeholder="username">
-                           <!-- <label class="form-label" for="loginName">Email or username</label> -->
-                            <div *ngIf="loginForm.controls['username'].hasError('required')" class="error-message">Username is required</div>
+                            <input type="email" id="loginName" class="form-control" formControlName="userName"
+                                placeholder="username">
+                            <div *ngIf="loginForm.controls['userName'].hasError('required')" class="error-message">
+                                Username is required</div>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="loginPassword" class="form-control" formControlName="password" placeholder="password"/>
-                            <!-- <label class="form-label" for="loginPassword">Password</label> -->
-                            <div *ngIf="loginForm.controls['password'].hasError('required')" class="error-message">Username is required</div>
+                            <input type="password" id="loginPassword" class="form-control" formControlName="password"
+                                placeholder="password" />
+                            <div *ngIf="loginForm.controls['password'].hasError('required')" class="error-message">
+                                Password is required</div>
                         </div>
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4" (click)="onSubmit()"
-                         style="margin-left: 130px;">Sign in</button>
+                            style="margin-left: 130px;">Sign in</button>
 
                         <!-- Register buttons -->
                         <div class="text-center">
@@ -44,31 +46,29 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                    <form>
-                        
+                    <form [formGroup]="registerForm">
 
-                        
                         <!-- Username input -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="registerUsername" class="form-control" />
-                            <label class="form-label" for="registerUsername">Username</label>
+                            <input type="text" id="registerUsername" class="form-control" placeholder="username" formControlName="userName" />
                         </div>
-
-                        
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="registerPassword" class="form-control" />
-                            <label class="form-label" for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" class="form-control" placeholder="password" formControlName="password"/>
                         </div>
 
                         <!-- phone number input -->
                         <div class="form-outline mb-4">
-                            <input type="number" id="registerPhone" class="form-control" />
-                            <label class="form-label" for="registerPhone">Phone Number</label>
+                            <input type="text" id="registerPhone" class="form-control" placeholder="phone number" formControlName="phone" />
+                        </div>
+
+                        <!-- email input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="registerEmail" class="form-control" placeholder="email" formControlName="email"/>
                         </div>
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                        <button type="submit" class="btn btn-primary btn-block mb-3" (click)="onRegister()" >Register</button>
                     </form>
                 </div>
             </div>

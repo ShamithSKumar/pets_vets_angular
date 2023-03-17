@@ -3,16 +3,15 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { Ng2SmartTableModule } from "ng2-smart-table";
-import { SharedModule } from "../shared/shared.module";
-import { AdminDashboardComponent } from "./admin-dashboard/admin-dashboard.component";
-import { AdminRoutingModule } from "./admin-routing.module";
+import { UserDashboardComponent } from "./user-dashboard/user-dashboard.component";
+import { UserRoutingModule } from "./user-routing.module";
 
 @NgModule({
     declarations: [
-        AdminDashboardComponent],
+        UserDashboardComponent],
     imports: [
         RouterModule,
-        AdminRoutingModule,
+        UserRoutingModule,
         //SharedModule,
         Ng2SmartTableModule,
         CommonModule,
@@ -24,4 +23,4 @@ import { AdminRoutingModule } from "./admin-routing.module";
         CommonModule
     ]
 })
-export class AdminModule { }
+export class UserModule { }

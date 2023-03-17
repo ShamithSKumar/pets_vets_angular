@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Service } from 'src/app/core/services/services';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  petsList:any = [];
+  usersList:any = [];
   settings = {
     columns: {
       index: {
@@ -17,37 +19,18 @@ export class AdminDashboardComponent implements OnInit {
           return cell.row.index + 1;
         }
       },
-      petName: {
-        title: 'Pet Name',
+      userName: {
+        title: 'User Name',
         filter: true
       },
-      productBrandName: {
-        title: 'Product Brand Name',
+      email: {
+        title: 'Email',
         filter: true
       },
-      our_com_prod: {
-        title: 'Our Company Product',
+      phone: {
+        title: 'Phone',
         filter: true
       },
-      price: {
-        title: 'Price',
-        filter: true
-      },
-      // photo: {
-      //   title: 'Photo',
-      //   filter: false,
-      //   type: 'html',
-      //   valuePrepareFunction: (photo: string) => { return `<div style=" width:80px;height:80px;border-radius:50%;"><img width="70px" height="70px" alt="photo"  src="${this.imageBaseUrl + photo}" onerror="this.src='assets/images/user-solid.svg'" /></div>`; },
-      // },
-      // visaExp: {
-      //   title: 'Visa Exp.',
-      //   filter: true
-      // },
-      // emiratCardExp: {
-      //   title: 'EC Exp.',
-      //   filter: true
-      // },
-
 
     },
     attr: {
@@ -63,12 +46,6 @@ export class AdminDashboardComponent implements OnInit {
       delete: false,
       edit: false,
       custom: [
-        // {
-        //   class: 'center',
-        //   name: 'edit',
-        //   type: 'html',
-        //   title: '<span class="action-icons view-icon"><i class="las la-pen"></i></span>'
-        // }
         {
           class: 'center',
           name: 'edit',
@@ -81,26 +58,60 @@ export class AdminDashboardComponent implements OnInit {
           type: 'html',
           title: '<i class="fas fa-binoculars" title="View"></i>'
         },
-        {
-          class: 'center',
-          name: 'delete',
-          type: 'html',
-          title: '<i class="fas fa-trash-alt" title="Delete"></i>'
-        }
+        // {
+        //   class: 'center',
+        //   name: 'delete',
+        //   type: 'html',
+        //   title: '<i class="fas fa-trash-alt" title="Delete"></i>'
+        // }
 
       ]
     }
   };
-  constructor() { }
+  updateForm = new FormGroup({
+    userName: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    id: new FormControl('')
+  })
+  constructor(
+    private services: Service
+  ) { }
 
   ngOnInit(): void {
-    console.log("hhhhhhhhhhhhhhhhhhh")
-  }
-  onCustomAction(event:any){
+    this.getUserPetList();
 
   }
+  getUserPetList(){
+    this.usersList = [];
+    this.services.getUsersList().subscribe((res: any) => {
+      if (res.data.length > 0)
+        this.usersList = res.data;
+    })
+  }
+  onCustomAction(event:any){
+    if (event.action === 'edit') {
+      console.log("event.data : ", event.data)
+      this.updateForm.patchValue({
+        userName: event.data.userName,
+        email: event.data.email,
+        phone: event.data.phone,
+        id: event.data.id,
+      })
+      document.getElementById('openModalButton')!.click();
+    }
+  }
   routeToAdd(){
-    
+    document.getElementById('openModalButton')!.click();
+  }
+  closeModal(){
+
+  }
+  onUpdate(){
+    this.services.updateUser(this.updateForm.value).subscribe((res: any) => {
+      
+    })
   }
 
 }

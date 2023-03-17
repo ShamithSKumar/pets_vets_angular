@@ -1,25 +1,27 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-0 ">
-    <h1 class="h4 fw-bold text-info mb-0 mt-0">Pets Details</h1>
+    <h1 class="h4 fw-bold text-info mb-0 mt-0">ADMIN DASHBOARD</h1>
 </div>
 <div class="col contentarea">
-    <div class="card content card-body">
-        <!-- <div class="row">
+  <div class="card content card-body">
+    <!-- <div class="row">
         <h1 class="h4 fw-bold text-info mb-0 mt-1" style="padding-bottom: 25px;">Products</h1>
       </div> -->
-        <!-- toolbar -->
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="d-flex w-100 flex-row ">
-                <div class=""><button class="btn btn-sm btn-warning ms-2" (click)="routeToAdd()" title="Add Product">+</button>
-                </div>
-                <div class="tablearea mt-3" style="display: block; white-space: nowrap; -ms-overflow-x: auto;">
-                    <div class="table table-bordered" id="area1">
-                        <ng2-smart-table [settings]="settings" [source]="petsList" (custom)="onCustomAction($event)">
-                        </ng2-smart-table>
-                    </div>
-                </div>
-            </div>
+    <!-- toolbar -->
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="d-flex w-100 flex-row ">
+        <div class="" style="
+        width: 110px;"><button class="btn btn-sm btn-warning ms-2" (click)="routeToAdd()" title="Add Product"
+            style="width: 55px;">+</button>
         </div>
+        <div class="tablearea mt-3" style="display: block; white-space: nowrap; -ms-overflow-x: auto;">
+          <div class="table table-bordered" id="area1">
+            <ng2-smart-table [settings]="settings" [source]="usersList" (custom)="onCustomAction($event)">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <button id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#view">Open
     Modal</button>
@@ -35,11 +37,28 @@
         </div>
         <div class="modal-body">
           <div class="container-fluid parentdetails">
-            
+            <form [formGroup]="updateForm">
+
+              <!-- Username input -->
+              <div class="form-outline mb-4">
+                  <input type="text" id="registerUsername" class="form-control" placeholder="username" formControlName="userName" readonly />
+              </div>
+              <!-- email input -->
+              <div class="form-outline mb-4">
+                  <input type="text" id="registerPassword" class="form-control" placeholder="email" formControlName="email"/>
+              </div>
+
+              <!-- phone number input -->
+              <div class="form-outline mb-4">
+                  <input type="text" id="registerPhone" class="form-control" placeholder="phone number" formControlName="phone" />
+              </div>
+
+          </form>
   
           </div>
         </div>
         <div class="modal-footer">
+          <button type="submit" class="btn btn-primary btn-block mb-3" (click)="onUpdate()" >Update User</button>
           <button type="button" class="btn btn-secondary" (click)="closeModal()" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
