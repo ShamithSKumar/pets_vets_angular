@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     })
   }
   onSubmit(){
-    this.storageService.clearLocalStorage();
+    this.storageService.setLocalStorage('token', "");
     console.log("first : "+this.storageService.getLocalStorage('token'))
     this.services.login(this.loginForm.value).subscribe((res: any) => {
       if(res.status){
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     })
   }
   onRegister(){
-    console.log("this.registerForm.value ", this.registerForm.value)
+    this.storageService.setLocalStorage('token', "");
     this.services.register(this.registerForm.value).subscribe((res: any) => {
       if(res.status){
 
