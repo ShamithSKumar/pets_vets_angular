@@ -9,7 +9,7 @@ import { Service } from 'src/app/core/services/services';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  usersList:any = [];
+  usersList: any = [];
   settings = {
     columns: {
       index: {
@@ -103,7 +103,7 @@ export class AdminDashboardComponent implements OnInit {
       delete: false,
       edit: false,
       custom: [
-        
+
       ]
     }
   };
@@ -123,14 +123,14 @@ export class AdminDashboardComponent implements OnInit {
     this.getUsersList();
 
   }
-  getUsersList(){
+  getUsersList() {
     this.usersList = [];
     this.services.getUsersList().subscribe((res: any) => {
       if (res.data.length > 0)
         this.usersList = res.data;
     })
   }
-  onCustomAction(event:any){
+  onCustomAction(event: any) {
     if (event.action === 'edit') {
       console.log("event.data : ", event.data)
       this.updateForm.patchValue({
@@ -142,23 +142,23 @@ export class AdminDashboardComponent implements OnInit {
       document.getElementById('openModalButton')!.click();
     }
     if (event.action === 'view') {
-        this.usersPetsList = [];
-        this.services.getPetsListByUser(event.data.userName).subscribe((res: any) => {
-          if (res.data.length > 0)
-            this.usersPetsList = res.data;
-        })
+      this.usersPetsList = [];
+      this.services.getPetsListByUser(event.data.userName).subscribe((res: any) => {
+        if (res.data.length > 0)
+          this.usersPetsList = res.data;
+      })
       document.getElementById('openModalButton1')!.click();
     }
   }
-  routeToAdd(){
+  routeToAdd() {
     document.getElementById('openModalButton')!.click();
   }
-  closeModal(){
+  closeModal() {
 
   }
-  onUpdate(){
+  onUpdate() {
     this.services.updateUser(this.updateForm.value).subscribe((res: any) => {
-      
+      this.getUsersList()
     })
   }
 
