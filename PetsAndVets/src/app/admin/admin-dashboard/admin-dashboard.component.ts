@@ -68,6 +68,38 @@ export class AdminDashboardComponent implements OnInit {
       ]
     }
   };
+  settings_pets = {
+    columns: {
+      index: {
+        title: 'Sl.No',
+        filter: false,
+        valuePrepareFunction: (value: any, row: any, cell: any) => {
+          return cell.row.index + 1;
+        }
+      },
+      petType: {
+        title: 'Pet Name',
+        filter: true
+      },
+      
+    },
+    attr: {
+      class: 'table table-bordered'
+    },
+    pager:
+    {
+      perPage: 50
+    },
+    actions: {
+      position: 'right',
+      add: false,
+      delete: false,
+      edit: false,
+      custom: [
+        
+      ]
+    }
+  };
   settings_userpets = {
     columns: {
       index: {
@@ -115,13 +147,21 @@ export class AdminDashboardComponent implements OnInit {
     id: new FormControl('')
   })
   usersPetsList: any = [];
+  petsList: any = [];
   constructor(
     private services: Service
   ) { }
 
   ngOnInit(): void {
     this.getUsersList();
-
+    this.getPetsList();
+  }
+  getPetsList() {
+    this.petsList = [];
+    this.services.getAllPets().subscribe((res: any) => {
+      if (res.data.length > 0)
+        this.petsList = res.data;
+    })
   }
   getUsersList() {
     this.usersList = [];

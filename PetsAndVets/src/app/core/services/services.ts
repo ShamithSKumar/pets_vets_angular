@@ -4,10 +4,9 @@ import { HttpService } from "../http/http.service";
 
 @Injectable({
     providedIn: 'root' // just before your class
-  })
+})
 export class Service {
-    
-    
+
     constructor(private http: HttpService) { }
 
     login(data): Observable<any> {
@@ -16,14 +15,14 @@ export class Service {
     getPetsList(): Observable<any> {
         return this.http.get('/userpet/list')
     }
-    getPetsListByUser(userName:any): Observable<any> {
-        return this.http.get('/userpet/list/'+userName);
-      }
+    getPetsListByUser(userName: any): Observable<any> {
+        return this.http.get('/userpet/list/' + userName);
+    }
     register(data): Observable<any> {
         return this.http.post('/user/create', data);
     }
-    deletePets(id:any) {
-        return this.http.delete('/userpet/delete/'+id);
+    deletePets(id: any) {
+        return this.http.delete('/userpet/delete/' + id);
     }
     updatePets(data: any) {
         return this.http.put('/userpet/update', data);
@@ -37,5 +36,9 @@ export class Service {
     updateUser(data: any) {
         return this.http.put('/user/update', data);
     }
-      
+    getAllPets() {
+        return this.http.get('/pet/list')
+    }
+
+
 }
